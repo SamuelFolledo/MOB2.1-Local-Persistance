@@ -10,27 +10,27 @@ import Foundation
 
 struct Defaults {
     
-    static let token = "token"
-    static let tokenKey = "tokenKey"
+    @UserDefaultsWrapper(key: "tokenKey", defaultValue: "") static var token: String
     
-    struct Model {
-        var token: String?
-        
-        init(token: String) {
-            self.token = token
-        }
-    }
-    
-    static var saveToken = { (token: String) in
-        UserDefaults.standard.set(token, forKey: tokenKey)
-    }
-    
-    static var getToken = { () -> Model in
-        let token = UserDefaults.standard.string(forKey: tokenKey) ?? ""
-        return Model(token: token)
-    }
+//    static let tokenKey = "tokenKey"
+//    struct Model {
+//        var token: String?
+//
+//        init(token: String) {
+//            self.token = token
+//        }
+//    }
+//
+//    static var saveToken = { (token: String) in
+//        UserDefaults.standard.set(token, forKey: tokenKey)
+//    }
+//
+//    static var getToken = { () -> Model in
+//        let token = UserDefaults.standard.string(forKey: tokenKey) ?? ""
+//        return Model(token: token)
+//    }
     
     static func clearUserData(){
-        UserDefaults.standard.removeObject(forKey: tokenKey)
+        UserDefaults.standard.removeObject(forKey: "tokenKey")
     }
 }

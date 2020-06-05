@@ -16,6 +16,7 @@
 		3301A828248863CC0087BC23 /* Custom.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3301A827248863CC0087BC23 /* Custom.plist */; };
 		3301A82A2488650F0087BC23 /* Plist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3301A8292488650F0087BC23 /* Plist.swift */; };
 		3301A82C248874F20087BC23 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3301A82B248874F20087BC23 /* Defaults.swift */; };
+		33A46AF9248B0147005393AD /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A46AF8248B0147005393AD /* UserDefaultsWrapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		3301A827248863CC0087BC23 /* Custom.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Custom.plist; sourceTree = "<group>"; };
 		3301A8292488650F0087BC23 /* Plist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plist.swift; sourceTree = "<group>"; };
 		3301A82B248874F20087BC23 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		33A46AF8248B0147005393AD /* UserDefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				3301A827248863CC0087BC23 /* Custom.plist */,
 				3301A8292488650F0087BC23 /* Plist.swift */,
 				3301A82B248874F20087BC23 /* Defaults.swift */,
+				33A46AF8248B0147005393AD /* UserDefaultsWrapper.swift */,
 			);
 			path = "Day2-UserDefaults-Plist";
 			sourceTree = "<group>";
@@ -160,6 +163,7 @@
 				3301A813248863090087BC23 /* AppDelegate.swift in Sources */,
 				3301A82C248874F20087BC23 /* Defaults.swift in Sources */,
 				3301A82A2488650F0087BC23 /* Plist.swift in Sources */,
+				33A46AF9248B0147005393AD /* UserDefaultsWrapper.swift in Sources */,
 				3301A815248863090087BC23 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
