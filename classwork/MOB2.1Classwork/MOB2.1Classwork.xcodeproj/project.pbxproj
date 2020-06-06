@@ -17,6 +17,7 @@
 		3301A82A2488650F0087BC23 /* Plist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3301A8292488650F0087BC23 /* Plist.swift */; };
 		3301A82C248874F20087BC23 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3301A82B248874F20087BC23 /* Defaults.swift */; };
 		33A46AF9248B0147005393AD /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A46AF8248B0147005393AD /* UserDefaultsWrapper.swift */; };
+		33A46AFC248B1038005393AD /* NSCoding-Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A46AFB248B1038005393AD /* NSCoding-Person.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		3301A8292488650F0087BC23 /* Plist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plist.swift; sourceTree = "<group>"; };
 		3301A82B248874F20087BC23 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		33A46AF8248B0147005393AD /* UserDefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapper.swift; sourceTree = "<group>"; };
+		33A46AFB248B1038005393AD /* NSCoding-Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSCoding-Person.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				3301A814248863090087BC23 /* SceneDelegate.swift */,
 				3301A818248863090087BC23 /* Main.storyboard */,
 				3301A826248863460087BC23 /* Day2-UserDefaults-Plist */,
+				33A46AFA248B0FFB005393AD /* Day3-Keychain and NSCoding */,
 				3301A81B2488630C0087BC23 /* Assets.xcassets */,
 				3301A81D2488630C0087BC23 /* LaunchScreen.storyboard */,
 				3301A8202488630C0087BC23 /* Info.plist */,
@@ -85,6 +88,14 @@
 				33A46AF8248B0147005393AD /* UserDefaultsWrapper.swift */,
 			);
 			path = "Day2-UserDefaults-Plist";
+			sourceTree = "<group>";
+		};
+		33A46AFA248B0FFB005393AD /* Day3-Keychain and NSCoding */ = {
+			isa = PBXGroup;
+			children = (
+				33A46AFB248B1038005393AD /* NSCoding-Person.swift */,
+			);
+			path = "Day3-Keychain and NSCoding";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,6 +172,7 @@
 			files = (
 				3301A817248863090087BC23 /* Day1VC.swift in Sources */,
 				3301A813248863090087BC23 /* AppDelegate.swift in Sources */,
+				33A46AFC248B1038005393AD /* NSCoding-Person.swift in Sources */,
 				3301A82C248874F20087BC23 /* Defaults.swift in Sources */,
 				3301A82A2488650F0087BC23 /* Plist.swift in Sources */,
 				33A46AF9248B0147005393AD /* UserDefaultsWrapper.swift in Sources */,

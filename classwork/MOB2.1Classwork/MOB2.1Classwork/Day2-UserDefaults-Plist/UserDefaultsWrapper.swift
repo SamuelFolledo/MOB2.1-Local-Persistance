@@ -8,18 +8,30 @@
 
 import Foundation
 
+private protocol AnyOptional {
+    var isNil: Bool { get }
+}
+
+extension Optional: AnyOptional {
+    var isNil: Bool { self == nil }
+}
+
 @propertyWrapper
-struct UserDefaultsWrapper<Value> {
+struct UserDefaultsWrapper<Type> {
     let key: String
-    let defaultValue: Value
+    let defaultValue: Type
     let userDefaults: UserDefaults = .standard
     
-    var wrappedValue: Value {
+    var wrappedValue: Type {
         get {
-            return userDefaults.object(forKey: key) as? Value ?? defaultValue
+            return userDefaults.object(forKey: key) as? Type ?? defaultValue
         }
         set {
-            userDefaults.set(newValue, forKey: key)
+            if let optional = newValue as? AnyOptional, optional.isNil { //check if there is no value, remove it
+                UserDefaults.standard.removeObject(forKey: key)
+            } else { //if there is a newValue and it is not nil
+                userDefaults.set(newValue, forKey: key)
+            }
         }
     }
 }

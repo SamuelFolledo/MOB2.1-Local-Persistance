@@ -23,7 +23,29 @@ class Day1VC: UIViewController {
         view.backgroundColor = .white
         setupTableView()
         readPlist()
-        writeToPlist()
+//        writeToPlist()
+        day2()
+    }
+    
+    fileprivate func day2() {
+        Defaults.preferredLanguage = "EN"
+        print(Defaults.preferredLanguage ?? "")
+        Defaults.preferredLanguage = nil
+        print(Defaults.preferredLanguage ?? "")
+        
+        //NSCoding Encoding
+        let person = NSCodingPerson(name: "Kobe", favoriteColor: .yellow)
+        if let personData = try? JSONEncoder().encode(person) {
+            UserDefaults.standard.set(personData, forKey: "person")
+        }
+        
+        //NSCoding Decoding
+        if let savedPersonData = UserDefaults.standard.object(forKey: "person") as? Data {
+            if let loadedPerson = try? JSONDecoder().decode(NSCodingPerson.self, from: savedPersonData) {
+                print(loadedPerson.name)
+                print(loadedPerson.favoriteColor)
+            }
+        }
     }
     
     fileprivate func readPlist() {

@@ -12,25 +12,7 @@ struct Defaults {
     
     @UserDefaultsWrapper(key: "tokenKey", defaultValue: "") static var token: String
     
-//    static let tokenKey = "tokenKey"
-//    struct Model {
-//        var token: String?
-//
-//        init(token: String) {
-//            self.token = token
-//        }
-//    }
-//
-//    static var saveToken = { (token: String) in
-//        UserDefaults.standard.set(token, forKey: tokenKey)
-//    }
-//
-//    static var getToken = { () -> Model in
-//        let token = UserDefaults.standard.string(forKey: tokenKey) ?? ""
-//        return Model(token: token)
-//    }
+    @UserDefaultsWrapper(key: "preferredLanguage", defaultValue: "") static var preferredLanguage: String? //make it optional if you want to be able to set it
     
-    static func clearUserData(){
-        UserDefaults.standard.removeObject(forKey: "tokenKey")
-    }
+    @UserDefaultsWrapper(key: "person", defaultValue: nil) static var person: NSCodingPerson?
 }
