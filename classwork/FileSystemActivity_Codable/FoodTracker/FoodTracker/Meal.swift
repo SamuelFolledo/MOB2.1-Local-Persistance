@@ -17,7 +17,20 @@ class Meal {
     
     //MARK: Archiving Paths
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
-    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("meals")
+    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("meals") //old not working
+//    static let ArchiveURL: URL = URL(fileURLWithPath: "meals", relativeTo: FileManager.documentsDirectoryURL)
+    
+    //MARK: Example
+//    let anArray : [UInt8] = [226, 143, 179, 226, 156, 136, 239, 184, 143, 240, 159, 165, 179]
+//    let exampleURL = URL(fileURLWithPath: "message", relativeTo: FileManager.documentsDirectoryURL).appendingPathExtension("txt") //message.txt file
+//    let dataFromArray = Data(anArray)
+//    print(exampleURL)
+//    try dataFromArray.write(to: exampleURL, options: .atomic)
+//    //read
+//    let savedData = try Data.init(contentsOf: exampleURL)
+//    print(savedData)
+//    let arrayFromData = Array(savedData)
+//    print(arrayFromData)
     
     //MARK: Initialization
     init?(name: String, photo: UIImage?, rating: Int) {
@@ -43,7 +56,6 @@ class Meal {
         
         let photoData = try container.decode(Data.self, forKey: .photo)
         photo = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(photoData) as? UIImage ?? UIImage()
-        print("Decoded meal \(self)")
     }
 }
 
@@ -59,9 +71,7 @@ extension Meal: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(name, forKey: .name)
         try container.encode(rating, forKey: .rating)
-        
         let photoData = try NSKeyedArchiver.archivedData(withRootObject: photo!, requiringSecureCoding: false)
         try container.encode(photoData, forKey: .photo)
-        print("Encoded meal \(self)")
     }
 }

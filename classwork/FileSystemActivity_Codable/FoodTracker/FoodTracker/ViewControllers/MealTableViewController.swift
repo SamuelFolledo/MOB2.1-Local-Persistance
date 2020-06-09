@@ -32,21 +32,27 @@ class MealTableViewController: UITableViewController {
     }
     
     private func loadMeals() -> [Meal]? {
-        return NSKeyedUnarchiver.unarchiveObject(withFile: Meal.ArchiveURL.path) as? [Meal]
+        let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let filename = documentPath.appendingPathComponent("meals")
+
+        do {
+            let data = try Data(contentsOf: filename)
+            return try JSONDecoder().decode([Meal].self, from: data)
+        } catch {
+            print("Unable to load saved data.")
+        }
+        return nil
     }
     
     private func saveMeals() {
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(meals, toFile: Meal.ArchiveURL.path)
-        if isSuccessfulSave {
-            os_log("Meals successfully saved.", log: OSLog.default, type: .debug)
-        } else {
-            os_log("Failed to save meals...", log: OSLog.default, type: .error)
+        do {
+            let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            let filename = documentPath.appendingPathComponent("meals")
+            let data = try JSONEncoder().encode(self.meals)
+            try data.write(to: filename, options: [.atomicWrite, .completeFileProtection])
+        } catch {
+            print("Unable to save data.")
         }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     //MARK: - Table view data source
