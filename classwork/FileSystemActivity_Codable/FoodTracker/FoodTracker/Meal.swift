@@ -15,6 +15,10 @@ class Meal {
     var photo: UIImage?
     var rating: Int
     
+    //MARK: Archiving Paths
+    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("meals")
+    
     //MARK: Initialization
     init?(name: String, photo: UIImage?, rating: Int) {
         // The name must not be empty
@@ -39,6 +43,7 @@ class Meal {
         
         let photoData = try container.decode(Data.self, forKey: .photo)
         photo = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(photoData) as? UIImage ?? UIImage()
+        print("Decoded meal \(self)")
     }
 }
 
@@ -57,5 +62,6 @@ extension Meal: Codable {
         
         let photoData = try NSKeyedArchiver.archivedData(withRootObject: photo!, requiringSecureCoding: false)
         try container.encode(photoData, forKey: .photo)
+        print("Encoded meal \(self)")
     }
 }

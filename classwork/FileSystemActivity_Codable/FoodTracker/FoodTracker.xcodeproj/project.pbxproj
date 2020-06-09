@@ -64,6 +64,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		33CCE0E2248F13C8000648F8 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				936B4B831DB54E8F0090E3EE /* MealViewController.swift */,
+				93B36E641DDBE63500334F4A /* MealTableViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		33CCE0E3248F13E0000648F8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				93E91EF01DCA8F83003E4C01 /* RatingControl.swift */,
+				93B36E621DDB8D3A00334F4A /* MealTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		936B4B751DB54E8F0090E3EE = {
 			isa = PBXGroup;
 			children = (
@@ -86,11 +104,9 @@
 			isa = PBXGroup;
 			children = (
 				936B4B811DB54E8F0090E3EE /* AppDelegate.swift */,
-				936B4B831DB54E8F0090E3EE /* MealViewController.swift */,
-				93E91EF01DCA8F83003E4C01 /* RatingControl.swift */,
+				33CCE0E2248F13C8000648F8 /* ViewControllers */,
+				33CCE0E3248F13E0000648F8 /* Views */,
 				939722381DD4ED9800ACC1D0 /* Meal.swift */,
-				93B36E621DDB8D3A00334F4A /* MealTableViewCell.swift */,
-				93B36E641DDBE63500334F4A /* MealTableViewController.swift */,
 				936B4B851DB54E8F0090E3EE /* Main.storyboard */,
 				936B4B881DB54E8F0090E3EE /* Assets.xcassets */,
 				936B4B8A1DB54E8F0090E3EE /* LaunchScreen.storyboard */,
