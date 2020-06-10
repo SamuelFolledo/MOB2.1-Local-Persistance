@@ -46,8 +46,8 @@ class MealTableViewController: UITableViewController {
     
     private func saveMeals() {
         do {
-            let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-            let filename = documentPath.appendingPathComponent("meals")
+//            let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            let filename = Meal.DocumentsDirectory.appendingPathComponent("meals")
             let data = try JSONEncoder().encode(self.meals)
             try data.write(to: filename, options: [.atomicWrite, .completeFileProtection])
         } catch {

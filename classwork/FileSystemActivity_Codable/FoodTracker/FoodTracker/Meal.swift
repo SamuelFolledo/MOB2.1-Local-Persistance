@@ -54,7 +54,7 @@ class Meal {
         name = try container.decode(String.self, forKey: .name)
         rating = try container.decode(Int.self, forKey: .rating)
         
-        let photoData = try container.decode(Data.self, forKey: .photo)
+        let photoData = try container.decode(Data.self, forKey: .photo) //turn photo to data
         photo = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(photoData) as? UIImage ?? UIImage()
     }
 }
