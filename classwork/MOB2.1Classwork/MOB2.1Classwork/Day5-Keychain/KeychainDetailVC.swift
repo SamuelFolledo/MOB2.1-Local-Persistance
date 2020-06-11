@@ -7,24 +7,44 @@
 //
 
 import UIKit
+import SnapKit
 
 class KeychainDetailVC: UIViewController {
-
+    
+    var decryptedMessage: String?
+    
+    private lazy var encrytedLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        label.text = "Hidden message"
+        label.numberOfLines = 1
+        return label
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        view.backgroundColor = .white
+        constraintEncryptedLabel()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let message = decryptedMessage {
+            encrytedLabel.text = message
+        } else {
+            encrytedLabel.text = "No message has been saved"
+        }
     }
-    */
-
+    
+    fileprivate func constraintEncryptedLabel() {
+        view.addSubview(encrytedLabel)
+        encrytedLabel.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+            make.width.equalToSuperview().offset(-20)
+            make.height.equalTo(45)
+        }
+    }
 }
