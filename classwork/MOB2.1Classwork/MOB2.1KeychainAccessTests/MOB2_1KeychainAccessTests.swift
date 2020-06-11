@@ -6,28 +6,35 @@
 //  Copyright © 2020 SamuelFolledo. All rights reserved.
 //
 
+//MARK: How to create a test file https://basememara.com/unit-testing-in-swift-xcode-and-beyond/#:~:text=Click%20the%20%E2%80%9CAdd%20a%20target,(where%20your%20code%20is).
+
 import XCTest
+import KeychainAccess
+@testable import MOB2_1Classwork
 
 class MOB2_1KeychainAccessTests: XCTestCase {
+    
+    var day5VC: Day5VC = Day5VC()
+    let keychain = Keychain(service: "Mobile2.1App")
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testSave() {
+        day5VC.save(key: "name", text: "Samuel")
+        XCTAssertEqual(day5VC.reveal(key: "name"), "Samuel")
+        
+        day5VC.save(key: "password", text: "unknown password")
+        XCTAssertNotEqual(day5VC.reveal(key: "password"), "Unknown password")
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    func testReveal() {
+        XCTAssertEqual(day5VC.reveal(key: "firstName"), nil)
+        
+        XCTAssertNotEqual(day5VC.reveal(key: "password"), "Unknown password")
+        
+        day5VC.save(text: "new message")
+        XCTAssertEqual(day5VC.reveal(), "new message")
+        day5VC.delete(key: "old message") //deleting differnt key
+        XCTAssertEqual(day5VC.reveal(), "new message")
+        day5VC.delete()
+        XCTAssertEqual(day5VC.reveal(), nil)
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }

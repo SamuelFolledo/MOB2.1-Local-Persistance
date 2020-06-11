@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,10 +16,25 @@
 		3301A828248863CC0087BC23 /* Custom.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3301A827248863CC0087BC23 /* Custom.plist */; };
 		3301A82A2488650F0087BC23 /* Plist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3301A8292488650F0087BC23 /* Plist.swift */; };
 		3301A82C248874F20087BC23 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3301A82B248874F20087BC23 /* Defaults.swift */; };
+		330D28A42491A148008F991B /* Day5VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330D28A32491A148008F991B /* Day5VC.swift */; };
+		330D28A72491A370008F991B /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 330D28A62491A370008F991B /* KeychainAccess */; };
+		330D28A92491A391008F991B /* KeychainDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330D28A82491A391008F991B /* KeychainDetailVC.swift */; };
+		330D28AC2491A53B008F991B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 330D28AB2491A53B008F991B /* SnapKit */; };
+		330D28B72491AFED008F991B /* MOB2_1KeychainAccessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330D28B62491AFED008F991B /* MOB2_1KeychainAccessTests.swift */; };
 		33A46AF9248B0147005393AD /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A46AF8248B0147005393AD /* UserDefaultsWrapper.swift */; };
 		33A46AFC248B1038005393AD /* NSCoding-Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A46AFB248B1038005393AD /* NSCoding-Person.swift */; };
 		33D449AC248EFB2200665202 /* Day4VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D449AB248EFB2200665202 /* Day4VC.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		330D28B92491AFED008F991B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3301A807248863090087BC23 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3301A80E248863090087BC23;
+			remoteInfo = MOB2.1Classwork;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		3301A80F248863090087BC23 /* MOB2.1Classwork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MOB2.1Classwork.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -33,6 +48,11 @@
 		3301A827248863CC0087BC23 /* Custom.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Custom.plist; sourceTree = "<group>"; };
 		3301A8292488650F0087BC23 /* Plist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plist.swift; sourceTree = "<group>"; };
 		3301A82B248874F20087BC23 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		330D28A32491A148008F991B /* Day5VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day5VC.swift; sourceTree = "<group>"; };
+		330D28A82491A391008F991B /* KeychainDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainDetailVC.swift; sourceTree = "<group>"; };
+		330D28B42491AFED008F991B /* MOB2.1KeychainAccessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MOB2.1KeychainAccessTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		330D28B62491AFED008F991B /* MOB2_1KeychainAccessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MOB2_1KeychainAccessTests.swift; sourceTree = "<group>"; };
+		330D28B82491AFED008F991B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33A46AF8248B0147005393AD /* UserDefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapper.swift; sourceTree = "<group>"; };
 		33A46AFB248B1038005393AD /* NSCoding-Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSCoding-Person.swift"; sourceTree = "<group>"; };
 		33D449AB248EFB2200665202 /* Day4VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day4VC.swift; sourceTree = "<group>"; };
@@ -40,6 +60,15 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		3301A80C248863090087BC23 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				330D28A72491A370008F991B /* KeychainAccess in Frameworks */,
+				330D28AC2491A53B008F991B /* SnapKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		330D28B12491AFED008F991B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -53,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				3301A811248863090087BC23 /* MOB2.1Classwork */,
+				330D28B52491AFED008F991B /* MOB2.1KeychainAccessTests */,
 				3301A810248863090087BC23 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -61,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				3301A80F248863090087BC23 /* MOB2.1Classwork.app */,
+				330D28B42491AFED008F991B /* MOB2.1KeychainAccessTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -74,6 +105,7 @@
 				3301A826248863460087BC23 /* Day2-UserDefaults-Plist */,
 				33A46AFA248B0FFB005393AD /* Day3-Keychain and NSCoding */,
 				33D449AD248EFB2600665202 /* Day4-FileSystem */,
+				330D28A22491A125008F991B /* Day5-Keychain */,
 				3301A81B2488630C0087BC23 /* Assets.xcassets */,
 				3301A81D2488630C0087BC23 /* LaunchScreen.storyboard */,
 				3301A8202488630C0087BC23 /* Info.plist */,
@@ -91,6 +123,24 @@
 				33A46AF8248B0147005393AD /* UserDefaultsWrapper.swift */,
 			);
 			path = "Day2-UserDefaults-Plist";
+			sourceTree = "<group>";
+		};
+		330D28A22491A125008F991B /* Day5-Keychain */ = {
+			isa = PBXGroup;
+			children = (
+				330D28A32491A148008F991B /* Day5VC.swift */,
+				330D28A82491A391008F991B /* KeychainDetailVC.swift */,
+			);
+			path = "Day5-Keychain";
+			sourceTree = "<group>";
+		};
+		330D28B52491AFED008F991B /* MOB2.1KeychainAccessTests */ = {
+			isa = PBXGroup;
+			children = (
+				330D28B62491AFED008F991B /* MOB2_1KeychainAccessTests.swift */,
+				330D28B82491AFED008F991B /* Info.plist */,
+			);
+			path = MOB2.1KeychainAccessTests;
 			sourceTree = "<group>";
 		};
 		33A46AFA248B0FFB005393AD /* Day3-Keychain and NSCoding */ = {
@@ -125,9 +175,31 @@
 			dependencies = (
 			);
 			name = MOB2.1Classwork;
+			packageProductDependencies = (
+				330D28A62491A370008F991B /* KeychainAccess */,
+				330D28AB2491A53B008F991B /* SnapKit */,
+			);
 			productName = MOB2.1Classwork;
 			productReference = 3301A80F248863090087BC23 /* MOB2.1Classwork.app */;
 			productType = "com.apple.product-type.application";
+		};
+		330D28B32491AFED008F991B /* MOB2.1KeychainAccessTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 330D28BB2491AFED008F991B /* Build configuration list for PBXNativeTarget "MOB2.1KeychainAccessTests" */;
+			buildPhases = (
+				330D28B02491AFED008F991B /* Sources */,
+				330D28B12491AFED008F991B /* Frameworks */,
+				330D28B22491AFED008F991B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				330D28BA2491AFED008F991B /* PBXTargetDependency */,
+			);
+			name = MOB2.1KeychainAccessTests;
+			productName = MOB2.1KeychainAccessTests;
+			productReference = 330D28B42491AFED008F991B /* MOB2.1KeychainAccessTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -142,6 +214,10 @@
 					3301A80E248863090087BC23 = {
 						CreatedOnToolsVersion = 11.5;
 					};
+					330D28B32491AFED008F991B = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = 3301A80E248863090087BC23;
+					};
 				};
 			};
 			buildConfigurationList = 3301A80A248863090087BC23 /* Build configuration list for PBXProject "MOB2.1Classwork" */;
@@ -153,11 +229,16 @@
 				Base,
 			);
 			mainGroup = 3301A806248863090087BC23;
+			packageReferences = (
+				330D28A52491A370008F991B /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+				330D28AA2491A53B008F991B /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 3301A810248863090087BC23 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				3301A80E248863090087BC23 /* MOB2.1Classwork */,
+				330D28B32491AFED008F991B /* MOB2.1KeychainAccessTests */,
 			);
 		};
 /* End PBXProject section */
@@ -174,6 +255,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		330D28B22491AFED008F991B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -186,13 +274,31 @@
 				3301A813248863090087BC23 /* AppDelegate.swift in Sources */,
 				33A46AFC248B1038005393AD /* NSCoding-Person.swift in Sources */,
 				3301A82C248874F20087BC23 /* Defaults.swift in Sources */,
+				330D28A42491A148008F991B /* Day5VC.swift in Sources */,
 				3301A82A2488650F0087BC23 /* Plist.swift in Sources */,
 				33A46AF9248B0147005393AD /* UserDefaultsWrapper.swift in Sources */,
 				3301A815248863090087BC23 /* SceneDelegate.swift in Sources */,
+				330D28A92491A391008F991B /* KeychainDetailVC.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		330D28B02491AFED008F991B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				330D28B72491AFED008F991B /* MOB2_1KeychainAccessTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		330D28BA2491AFED008F991B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3301A80E248863090087BC23 /* MOB2.1Classwork */;
+			targetProxy = 330D28B92491AFED008F991B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		3301A818248863090087BC23 /* Main.storyboard */ = {
@@ -364,6 +470,46 @@
 			};
 			name = Release;
 		};
+		330D28BC2491AFED008F991B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9NY68F4K3P;
+				INFOPLIST_FILE = MOB2.1KeychainAccessTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "SamuelFolledo.MOB2-1KeychainAccessTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MOB2.1Classwork.app/MOB2.1Classwork";
+			};
+			name = Debug;
+		};
+		330D28BD2491AFED008F991B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9NY68F4K3P;
+				INFOPLIST_FILE = MOB2.1KeychainAccessTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "SamuelFolledo.MOB2-1KeychainAccessTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MOB2.1Classwork.app/MOB2.1Classwork";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -385,7 +531,48 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		330D28BB2491AFED008F991B /* Build configuration list for PBXNativeTarget "MOB2.1KeychainAccessTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				330D28BC2491AFED008F991B /* Debug */,
+				330D28BD2491AFED008F991B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		330D28A52491A370008F991B /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.2.0;
+			};
+		};
+		330D28AA2491A53B008F991B /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		330D28A62491A370008F991B /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 330D28A52491A370008F991B /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
+		330D28AB2491A53B008F991B /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 330D28AA2491A53B008F991B /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3301A807248863090087BC23 /* Project object */;
 }
