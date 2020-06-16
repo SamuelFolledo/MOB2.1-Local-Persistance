@@ -16,10 +16,9 @@ class ItemDetailedViewController: UIViewController {
         labelTitle.text = "Item Details"
         labelItemTitle.text = item.itemTitle
         imageViewItem.image = item.itemImage
-        if let loanee = item.loanee {
-            labelLoaneeName.text = loanee.name
-            loaneePhoneNumLabel.text = loanee.contactNumber
-        }
+        let loanee = item.loanee
+        labelLoaneeName.text = loanee.name
+        loaneePhoneNumLabel.text = loanee.contactNumber
         
         if item.notes.isEmpty {
             labelNotes.text = "no notes"
@@ -55,7 +54,7 @@ class ItemDetailedViewController: UIViewController {
     @IBAction func pressMarkAsReturned(_ sender: UIButton) {
         let alertMarkAsReturned = UIAlertController(
             title: "Mark Item as Returned",
-            message: "Are you sure you want to mark this item, \(item.itemTitle), as returned from \(item.loanee!.name)?",
+            message: "Are you sure you want to mark this item, \(item.itemTitle), as returned from \(item.loanee.name)?",
             preferredStyle: .actionSheet
         )
         

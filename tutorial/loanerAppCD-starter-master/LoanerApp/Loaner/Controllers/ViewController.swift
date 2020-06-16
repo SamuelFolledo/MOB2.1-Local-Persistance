@@ -28,7 +28,7 @@ class ViewController: UIViewController {
     }
     
     func createNewItem() -> Item {
-        return Item(itemTitle: "Untitled Item")
+        return Item()
     }
     
     func add(saved item: Item) {

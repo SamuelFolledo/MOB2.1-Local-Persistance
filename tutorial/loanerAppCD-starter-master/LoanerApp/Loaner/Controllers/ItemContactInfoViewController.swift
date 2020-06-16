@@ -46,8 +46,8 @@ class ItemContactInfoViewController: UIViewController, UITextFieldDelegate {
         }
         
         item.assignLoanee(name: nameFromUserInput, phoneNumber: phoneNumFromUserInput)
-        item.loanee?.name = nameFromUserInput
-        item.loanee?.contactNumber = phoneNumFromUserInput
+        item.loanee.name = nameFromUserInput
+        item.loanee.contactNumber = phoneNumFromUserInput
         
         print(item.loanee as Any)
         

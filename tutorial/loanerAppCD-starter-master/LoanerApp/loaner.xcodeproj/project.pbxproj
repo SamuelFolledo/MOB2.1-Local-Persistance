@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3344526F2498487B00F2260A /* LoanedItems.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3344526D2498487B00F2260A /* LoanedItems.xcdatamodeld */; };
+		3344527624984AA700F2260A /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3344527424984AA700F2260A /* Item+CoreDataClass.swift */; };
+		3344527724984AA700F2260A /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3344527524984AA700F2260A /* Item+CoreDataProperties.swift */; };
 		448856882239D544001EDDC4 /* Loanee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448856872239D544001EDDC4 /* Loanee.swift */; };
 		E929E9692124EB7E0018488C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E929E9682124EB7E0018488C /* AppDelegate.swift */; };
 		E929E96B2124EB7E0018488C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E929E96A2124EB7E0018488C /* ViewController.swift */; };
@@ -25,6 +27,8 @@
 
 /* Begin PBXFileReference section */
 		3344526E2498487B00F2260A /* LoanedItems.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LoanedItems.xcdatamodel; sourceTree = "<group>"; };
+		3344527424984AA700F2260A /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3344527524984AA700F2260A /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		448856872239D544001EDDC4 /* Loanee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loanee.swift; sourceTree = "<group>"; };
 		E929E9652124EB7E0018488C /* loaner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = loaner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E929E9682124EB7E0018488C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -77,9 +81,11 @@
 		44C7B628222722A100A8A0CF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3344526D2498487B00F2260A /* LoanedItems.xcdatamodeld */,
-				E9BA28F221274FED004FA7D3 /* Item.swift */,
 				448856872239D544001EDDC4 /* Loanee.swift */,
+				E9BA28F221274FED004FA7D3 /* Item.swift */,
+				3344526D2498487B00F2260A /* LoanedItems.xcdatamodeld */,
+				3344527424984AA700F2260A /* Item+CoreDataClass.swift */,
+				3344527524984AA700F2260A /* Item+CoreDataProperties.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -192,7 +198,9 @@
 				E9BA28F321274FED004FA7D3 /* Item.swift in Sources */,
 				E96F11EA2128BCCA004D549A /* ItemCollectionViewCell.swift in Sources */,
 				E9BA28F521275B1A004FA7D3 /* ItemDetailedViewController.swift in Sources */,
+				3344527724984AA700F2260A /* Item+CoreDataProperties.swift in Sources */,
 				E9D24DF3212794E30045C5D8 /* ItemContactInfoViewController.swift in Sources */,
+				3344527624984AA700F2260A /* Item+CoreDataClass.swift in Sources */,
 				E9D24DEF212789B90045C5D8 /* UIImage+ImagePickerController.swift in Sources */,
 				3344526F2498487B00F2260A /* LoanedItems.xcdatamodeld in Sources */,
 				E929E9692124EB7E0018488C /* AppDelegate.swift in Sources */,
@@ -342,13 +350,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8U3L6K9JA6;
+				DEVELOPMENT_TEAM = 9NY68F4K3P;
 				INFOPLIST_FILE = loaner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.makeschool.linniergames.loaner;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SamuelFolledo.loaner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -360,13 +368,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8U3L6K9JA6;
+				DEVELOPMENT_TEAM = 9NY68F4K3P;
 				INFOPLIST_FILE = loaner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.makeschool.linniergames.loaner;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SamuelFolledo.loaner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
