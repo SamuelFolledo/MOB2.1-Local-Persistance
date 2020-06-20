@@ -34,6 +34,7 @@ class ViewController: UIViewController {
 
         // Save the new items in the Managed Object Context
         store.saveContext()
+        updateDataSource()
     }
     
     func createNewItem() -> Item {
@@ -115,6 +116,23 @@ class ViewController: UIViewController {
             add(saved: itemContactVc.item)
         default:
             break
+        }
+    }
+    
+    // populate an array with fetched results on success, or to delete all items from that array on failure
+    private func updateDataSource() {
+        self.store.fetchPersistedData {
+
+            (fetchItemsResult) in
+
+            switch fetchItemsResult {
+            case let .success(items):
+                self.items = items
+            case .failure(_):
+                self.items.removeAll()
+            }
+            // reload the collection view's data source to present the current data set to the user
+            self.collectionView.reloadSections(IndexSet(integer: 0))
         }
     }
 }
