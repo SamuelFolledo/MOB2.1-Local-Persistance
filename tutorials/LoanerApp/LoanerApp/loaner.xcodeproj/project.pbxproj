@@ -59,6 +59,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		336C9D6224A093010011CDCD /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				448856872239D544001EDDC4 /* Loanee.swift */,
+				E9BA28F221274FED004FA7D3 /* Item.swift */,
+				3344526D2498487B00F2260A /* LoanedItems.xcdatamodeld */,
+				3344527424984AA700F2260A /* Item+CoreDataClass.swift */,
+				3344527524984AA700F2260A /* Item+CoreDataProperties.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		44C7B6262227229400A8A0CF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -83,12 +95,7 @@
 		44C7B628222722A100A8A0CF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				448856872239D544001EDDC4 /* Loanee.swift */,
-				E9BA28F221274FED004FA7D3 /* Item.swift */,
 				333A949E249DC6D100C97FE9 /* ItemStore.swift */,
-				3344526D2498487B00F2260A /* LoanedItems.xcdatamodeld */,
-				3344527424984AA700F2260A /* Item+CoreDataClass.swift */,
-				3344527524984AA700F2260A /* Item+CoreDataProperties.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -114,6 +121,7 @@
 			children = (
 				44C7B6262227229400A8A0CF /* Controllers */,
 				44C7B628222722A100A8A0CF /* Model */,
+				336C9D6224A093010011CDCD /* CoreData */,
 				44C7B6272227229C00A8A0CF /* Views */,
 				E929E9682124EB7E0018488C /* AppDelegate.swift */,
 				E929E96C2124EB7E0018488C /* Main.storyboard */,
