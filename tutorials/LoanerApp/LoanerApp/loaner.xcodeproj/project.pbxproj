@@ -74,9 +74,9 @@
 		44C7B6262227229400A8A0CF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E929E96A2124EB7E0018488C /* ViewController.swift */,
 				E9D24DF2212794E30045C5D8 /* ItemContactInfoViewController.swift */,
 				E9D24DF021278BCD0045C5D8 /* ItemNotesViewController.swift */,
-				E929E96A2124EB7E0018488C /* ViewController.swift */,
 				E9BA28F421275B1A004FA7D3 /* ItemDetailedViewController.swift */,
 				E969554D21277C3100457E12 /* ItemEditorViewController.swift */,
 			);
