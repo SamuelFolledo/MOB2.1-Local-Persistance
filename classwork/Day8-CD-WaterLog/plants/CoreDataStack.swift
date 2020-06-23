@@ -11,12 +11,16 @@ import CoreData //import the core data module
 
 class CoreDataStack {
     
+    private let modelName: String //create a private property to store the modelName
+    
+    init(modelName: String) {
+        self.modelName = modelName //initializer needed to save the modelName into the private property
+    }
+    
     //we always need this
     lazy var managedContext: NSManagedObjectContext = {
         return self.storeContainer.viewContext
     }()
-    
-    private let modelName: String //create a private property to store the modelName
     
     //lazy instantiate the NSPersistentContainer, passing the modelName
     private lazy var storeContainer: NSPersistentContainer = {
@@ -30,18 +34,12 @@ class CoreDataStack {
         return container
     }()
     
-    init(modelName: String) {
-        self.modelName = modelName //initializer needed to save the modelName into the private property
-    }
-    
     func saveContext () {
-      guard managedContext.hasChanges else { return }
-
-      do {
-        try managedContext.save()
-      } catch let error as NSError {
-        print("Error: \(error), \(error.userInfo)")
-      }
+        guard managedContext.hasChanges else { return }
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Error: \(error), \(error.userInfo)")
+        }
     }
-    
 }
