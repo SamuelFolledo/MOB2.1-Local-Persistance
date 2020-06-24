@@ -54,7 +54,7 @@ class ViewController: UIViewController {
       managedObjectContext: coreDataStack.managedContext,
       sectionNameKeyPath: #keyPath(Team.qualifyingZone),
       cacheName: nil)
-    fetchedResultsController.delegate = self //needed for Stretch Challenge #2
+    fetchedResultsController.delegate = self //needed for Stretch Challenge #2 and #3
     return fetchedResultsController
   }()
 
@@ -129,12 +129,7 @@ extension ViewController: UITableViewDelegate {
   
   //MARK: Split Sections by Continent
   func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    if let sections = fetchedResultsController.sections {
-    /*get current section based on section index*/
-          let currentSection = sections[section]
-          return currentSection.name
-        }
-    return nil
+    return fetchedResultsController.sections?[section].name
   }
 }
 
@@ -144,6 +139,7 @@ extension ViewController: NSFetchedResultsControllerDelegate {
 //    tableView.reloadData()
 //  }
   
+  //MARK: Stretch Challenge #3
   func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
     tableView.beginUpdates()
   }
@@ -170,5 +166,17 @@ extension ViewController: NSFetchedResultsControllerDelegate {
 
   func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
     tableView.endUpdates()
+  }
+  
+  //Not needed but for inserting a new section
+  func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+    let indexSet = IndexSet(integer: sectionIndex)
+    switch type {
+    case .insert:
+      tableView.insertSections(IndexSet, with: .automatic)
+    case .delete
+      tableView.deleteSections(IndexSet, with: .automatic)
+    default: break
+    }
   }
 }
