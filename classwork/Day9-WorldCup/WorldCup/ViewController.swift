@@ -27,6 +27,7 @@
 /// THE SOFTWARE.
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController {
 
@@ -37,10 +38,34 @@ class ViewController: UIViewController {
   // MARK: - IBOutlets
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var addButton: UIBarButtonItem!
+  
+  //MARK: Views
+  //property that holds fetched results
+  lazy var fetchedResultsController: NSFetchedResultsController<Team> = {
+
+    let fetchRequest: NSFetchRequest<Team> = Team.fetchRequest()
+    let nameSort = NSSortDescriptor(key: "teamName", ascending: true)
+    let continentSort = NSSortDescriptor(key: "qualifyingZone", ascending: true)
+    let winsSort = NSSortDescriptor(key: "wins", ascending: false)
+    fetchRequest.sortDescriptors = [continentSort, winsSort, nameSort]
+
+    let fetchedResultsController = NSFetchedResultsController(
+      fetchRequest: fetchRequest,
+      managedObjectContext: coreDataStack.managedContext,
+      sectionNameKeyPath: #keyPath(Team.qualifyingZone),
+      cacheName: nil)
+    fetchedResultsController.delegate = self //needed for Stretch Challenge #2
+    return fetchedResultsController
+  }()
 
   // MARK: - View Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
+    do {
+      try fetchedResultsController.performFetch()
+    } catch {
+      print(error)
+    }
   }
 }
 
@@ -48,14 +73,24 @@ class ViewController: UIViewController {
 extension ViewController {
 
   func configure(cell: UITableViewCell, for indexPath: IndexPath) {
+//    guard let cell = cell as? TeamCell else {
+//      return
+//    }
+//
+//    cell.flagImageView.backgroundColor = .blue
+//    cell.teamLabel.text = "Team Name"
+//    cell.scoreLabel.text = "Wins: 0"
+//  }
+    guard let cell = cell as? TeamCell else { return }
+    let team = fetchedResultsController.object(at: indexPath)
+    cell.teamLabel.text = team.teamName
+    cell.scoreLabel.text = "Wins: \(team.wins)"
 
-    guard let cell = cell as? TeamCell else {
-      return
+    if let imageName = team.imageName {
+      cell.flagImageView.image = UIImage(named: imageName)
+    } else {
+      cell.flagImageView.image = nil
     }
-
-    cell.flagImageView.backgroundColor = .blue
-    cell.teamLabel.text = "Team Name"
-    cell.scoreLabel.text = "Wins: 0"
   }
 }
 
@@ -63,11 +98,15 @@ extension ViewController {
 extension ViewController: UITableViewDataSource {
 
   func numberOfSections(in tableView: UITableView) -> Int {
-    return 1
+    return fetchedResultsController.sections?.count ?? 0
   }
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 20
+    guard let sectionInfo =
+      fetchedResultsController.sections?[section] else {
+        return 0
+    }
+    return sectionInfo.numberOfObjects
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -80,7 +119,56 @@ extension ViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension ViewController: UITableViewDelegate {
-
+  
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let team = fetchedResultsController.object(at: indexPath)
+    team.wins = team.wins + 1
+    coreDataStack.saveContext()
+//    tableView.reloadData()
+  }
+  
+  //MARK: Split Sections by Continent
+  func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    if let sections = fetchedResultsController.sections {
+    /*get current section based on section index*/
+          let currentSection = sections[section]
+          return currentSection.name
+        }
+    return nil
+  }
+}
+
+//MARK: Stretch Challenge #2
+extension ViewController: NSFetchedResultsControllerDelegate {
+//  func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+//    tableView.reloadData()
+//  }
+  
+  func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+    tableView.beginUpdates()
+  }
+
+  func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                  didChange anObject: Any,
+                  at indexPath: IndexPath?,
+                  for type: NSFetchedResultsChangeType,
+                  newIndexPath: IndexPath?) {
+
+    switch type {
+    case .insert:
+      tableView.insertRows(at: [newIndexPath!], with: .automatic)
+    case .delete:
+      tableView.deleteRows(at: [indexPath!], with: .automatic)
+    case .update:
+      let cell = tableView.cellForRow(at: indexPath!) as! TeamCell
+      configure(cell: cell, for: indexPath!)
+    case .move:
+      tableView.deleteRows(at: [indexPath!], with: .automatic)
+      tableView.insertRows(at: [newIndexPath!], with: .automatic)
+    }
+  }
+
+  func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+    tableView.endUpdates()
   }
 }
