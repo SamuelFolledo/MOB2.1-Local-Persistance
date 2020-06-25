@@ -174,7 +174,7 @@ extension ViewController: NSFetchedResultsControllerDelegate {
     switch type {
     case .insert:
       tableView.insertSections(indexSet, with: .automatic)
-    case .delete
+    case .delete:
       tableView.deleteSections(indexSet, with: .automatic)
     default: break
     }
