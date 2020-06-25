@@ -95,54 +95,78 @@ private extension JournalListViewController {
 
   func exportCSVFile() { //save csv file to the disk
     navigationItem.leftBarButtonItem = activityIndicatorBarButtonItem()
-
-    // 1 First, retrieve all JournalEntry entities by executing a fetch request.
-    let context = coreDataStack.mainContext
+/* //Replaced to work in background
+    let context = coreDataStack.mainContext //dont use the main context for tasks you want to do in the background
     var results: [JournalEntry] = []
     do {
       results = try context.fetch(self.surfJournalFetchRequest())
     } catch let error as NSError {
       print("ERROR: \(error.localizedDescription)")
     }
-
-    // 2 Next, create the URL for the exported CSV file by appending the file name (“export.csv”) to the output of the NSTemporaryDirectory method.
-    let exportFilePath = NSTemporaryDirectory() + "export.csv" //The path returned by NSTemporaryDirectory is a unique directory for temporary file storage. This a good place for files that can easily be generated again and don’t need to be backed up by iTunes or to iCloud.
-    let exportFileURL = URL(fileURLWithPath: exportFilePath)
-    FileManager.default.createFile(atPath: exportFilePath, contents: Data(), attributes: nil) //create the empty file where you’ll store the exported data.
-
-    // 3 First, the app needs to create a file handler for writing, which is simply an object that handles the low-level disk operations necessary for writing data. To create a file handler for writing, use the FileHandle(forWritingTo:) initializer.
-    let fileHandle: FileHandle?
-    do {
-      fileHandle = try FileHandle(forWritingTo: exportFileURL)
-    } catch let error as NSError {
-      print("ERROR: \(error.localizedDescription)")
-      fileHandle = nil
-    }
-
-    if let fileHandle = fileHandle {
-      // 4 for each fetched journal entry, attempt to create a UTF8-encoded string using csv() on JournalEntry and data(using:allowLossyConversion:) on String.
-      //If it’s successful, you write the UTF8 string to disk using the file handler write() method.
-      for journalEntry in results {
-        fileHandle.seekToEndOfFile()
-        guard let csvData = journalEntry
-          .csv()
-          .data(using: .utf8, allowLossyConversion: false) else {
-            continue
-        }
-
-        fileHandle.write(csvData)
+*/
+    
+    // 1 First, retrieve all JournalEntry entities by executing a fetch request.
+    coreDataStack.storeContainer.performBackgroundTask { context in //This creates a new managed object context and passes it into the closure. The context created by performBackgroundTask(_:) is on a private queue, which doesn’t block the main UI queue.
+      var results: [JournalEntry] = []
+      do {
+        results = try context.fetch(self.surfJournalFetchRequest())
+      } catch let error as NSError {
+        print("ERROR: \(error.localizedDescription)")
       }
-
-      // 5 //close file and show alert
-      fileHandle.closeFile()
-
-      print("Export Path: \(exportFilePath)")
-      self.navigationItem.leftBarButtonItem = self.exportBarButtonItem()
-      self.showExportFinishedAlertView(exportFilePath)
-
-    } else {
-      self.navigationItem.leftBarButtonItem = self.exportBarButtonItem()
-    }
+      
+      // 2 Next, create the URL for the exported CSV file by appending the file name (“export.csv”) to the output of the NSTemporaryDirectory method.
+      let exportFilePath = NSTemporaryDirectory() + "export.csv" //The path returned by NSTemporaryDirectory is a unique directory for temporary file storage. This a good place for files that can easily be generated again and don’t need to be backed up by iTunes or to iCloud.
+      let exportFileURL = URL(fileURLWithPath: exportFilePath)
+      FileManager.default.createFile(atPath: exportFilePath, contents: Data(), attributes: nil) //create the empty file where you’ll store the exported data.
+      
+      // 3 First, the app needs to create a file handler for writing, which is simply an object that handles the low-level disk operations necessary for writing data. To create a file handler for writing, use the FileHandle(forWritingTo:) initializer.
+      let fileHandle: FileHandle?
+      do {
+        fileHandle = try FileHandle(forWritingTo: exportFileURL)
+      } catch let error as NSError {
+        print("ERROR: \(error.localizedDescription)")
+        fileHandle = nil
+      }
+      
+      if let fileHandle = fileHandle {
+        // 4 for each fetched journal entry, attempt to create a UTF8-encoded string using csv() on JournalEntry and data(using:allowLossyConversion:) on String.
+        //If it’s successful, you write the UTF8 string to disk using the file handler write() method.
+        for journalEntry in results {
+          fileHandle.seekToEndOfFile()
+          guard let csvData = journalEntry
+            .csv()
+            .data(using: .utf8, allowLossyConversion: false) else {
+              continue
+          }
+          
+          fileHandle.write(csvData)
+        }
+        
+        // 5 //close file and show alert
+        fileHandle.closeFile()
+/* //Replaced to work in background
+        print("Export Path: \(exportFilePath)")
+        self.navigationItem.leftBarButtonItem = self.exportBarButtonItem()
+        self.showExportFinishedAlertView(exportFilePath)
+        
+      } else {
+        self.navigationItem.leftBarButtonItem = self.exportBarButtonItem()
+      }
+*/
+        print("Export Path: \(exportFilePath)")
+        // 6 perform all operations related to the UI on the main queue, such as showing an alert view when the export operation is finished
+        DispatchQueue.main.async {
+          self.navigationItem.leftBarButtonItem =
+            self.exportBarButtonItem()
+          self.showExportFinishedAlertView(exportFilePath)
+        }
+      } else {
+        DispatchQueue.main.async {
+          self.navigationItem.leftBarButtonItem =
+            self.exportBarButtonItem()
+        }
+      }
+    } // 7 Closing brace for performBackgroundTask
   }
 
   // MARK: Export
