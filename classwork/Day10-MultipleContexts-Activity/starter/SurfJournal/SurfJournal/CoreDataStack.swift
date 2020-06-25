@@ -75,7 +75,7 @@ private extension CoreDataStack {
 
   func seedCoreDataContainerIfFirstLaunch() {
 
-    // 1
+    // 1 You first check UserDefaults for the previouslyLaunched boolean value. If the current execution is indeed the app’s first launch, the Bool will be false, making the if statement true. On first launch, the first thing you do is set previouslyLaunched to true so the seeding operation never happens again.
     let previouslyLaunched = UserDefaults.standard.bool(forKey: "previouslyLaunched")
     if !previouslyLaunched {
       UserDefaults.standard.set(true, forKey: "previouslyLaunched")
@@ -85,6 +85,7 @@ private extension CoreDataStack {
       let url = directory.appendingPathComponent(modelName + ".sqlite")
 
       // 2: Copying the SQLite file
+      /* You then copy the SQLite seed file SurfJournalModel.sqlite, included with the app bundle, to the directory returned by the Core Data-provided method NSPersistentContainer.defaultDirectoryURL(). */
       let seededDatabaseURL = Bundle.main.url(forResource: modelName, withExtension: "sqlite")!
       _ = try? FileManager.default.removeItem(at: url)
       do {
@@ -94,6 +95,7 @@ private extension CoreDataStack {
       }
 
       // 3: Copying the SHM file
+      /* Once the copy of SurfJournalModel.sqlite has succeeded, you then copy over the support file SurfJournalModel.sqlite-shm.*/
       let seededSHMURL = Bundle.main.url(forResource: modelName, withExtension: "sqlite-shm")!
       let shmURL = directory.appendingPathComponent(modelName + ".sqlite-shm")
       _ = try? FileManager.default.removeItem(at: shmURL)
@@ -104,6 +106,7 @@ private extension CoreDataStack {
       }
 
       // 4: Copying the WAL file
+      /* Finally, you copy over the remaining support file SurfJournalModel.sqlite-wal */
       let seededWALURL = Bundle.main.url(forResource: modelName, withExtension: "sqlite-wal")!
       let walURL = directory.appendingPathComponent(modelName + ".sqlite-wal")
       _ = try? FileManager.default.removeItem(at: walURL)
