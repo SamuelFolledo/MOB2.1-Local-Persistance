@@ -93,10 +93,10 @@ private extension JournalListViewController {
     fetchedResultsController = journalListFetchedResultsController()
   }
 
-  func exportCSVFile() {
+  func exportCSVFile() { //save csv file to the disk
     navigationItem.leftBarButtonItem = activityIndicatorBarButtonItem()
 
-    // 1
+    // 1 First, retrieve all JournalEntry entities by executing a fetch request.
     let context = coreDataStack.mainContext
     var results: [JournalEntry] = []
     do {
@@ -105,12 +105,12 @@ private extension JournalListViewController {
       print("ERROR: \(error.localizedDescription)")
     }
 
-    // 2
-    let exportFilePath = NSTemporaryDirectory() + "export.csv"
+    // 2 Next, create the URL for the exported CSV file by appending the file name (“export.csv”) to the output of the NSTemporaryDirectory method.
+    let exportFilePath = NSTemporaryDirectory() + "export.csv" //The path returned by NSTemporaryDirectory is a unique directory for temporary file storage. This a good place for files that can easily be generated again and don’t need to be backed up by iTunes or to iCloud.
     let exportFileURL = URL(fileURLWithPath: exportFilePath)
-    FileManager.default.createFile(atPath: exportFilePath, contents: Data(), attributes: nil)
+    FileManager.default.createFile(atPath: exportFilePath, contents: Data(), attributes: nil) //create the empty file where you’ll store the exported data.
 
-    // 3
+    // 3 First, the app needs to create a file handler for writing, which is simply an object that handles the low-level disk operations necessary for writing data. To create a file handler for writing, use the FileHandle(forWritingTo:) initializer.
     let fileHandle: FileHandle?
     do {
       fileHandle = try FileHandle(forWritingTo: exportFileURL)
@@ -120,7 +120,8 @@ private extension JournalListViewController {
     }
 
     if let fileHandle = fileHandle {
-      // 4
+      // 4 for each fetched journal entry, attempt to create a UTF8-encoded string using csv() on JournalEntry and data(using:allowLossyConversion:) on String.
+      //If it’s successful, you write the UTF8 string to disk using the file handler write() method.
       for journalEntry in results {
         fileHandle.seekToEndOfFile()
         guard let csvData = journalEntry
@@ -132,7 +133,7 @@ private extension JournalListViewController {
         fileHandle.write(csvData)
       }
 
-      // 5
+      // 5 //close file and show alert
       fileHandle.closeFile()
 
       print("Export Path: \(exportFilePath)")
