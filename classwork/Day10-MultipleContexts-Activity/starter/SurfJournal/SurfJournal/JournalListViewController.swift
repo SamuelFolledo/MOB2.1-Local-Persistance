@@ -57,9 +57,19 @@ class JournalListViewController: UITableViewController {
       }
       // 3
       let surfJournalEntry = fetchedResultsController.object(at: indexPath)
-      // 4
+/* // 4 Changed to use multiple contexts, 1,2,3 below
       detailViewController.journalEntry = surfJournalEntry
       detailViewController.context = surfJournalEntry.managedObjectContext
+      detailViewController.delegate = self
+ */
+      // 1 create a new managed object context named childContext with a .mainQueueConcurrencyType. Here you set a parent context instead of a persistent store coordinator as you would normally do when creating a managed object context.
+      let childContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+      childContext.parent = coreDataStack.mainContext //set parent to mainContext of your CoreDataStack
+      // 2 retrieve the relevant journal entry using the child context’s object(with:) method. You must use object(with:) to retrieve the journal entry because managed objects are specific to the context that created them. However, objectID values are not specific to a single context, so you can use them when you need to access objects in multiple contexts.
+      let childEntry = childContext.object(with: surfJournalEntry.objectID) as? JournalEntry //must used this to access childContext's journeyEntry not the main's journalEntry
+      // 3 set allRequired variables and use childEntry and childContext instead of the original surfJournalEntry and surfJournalEntry.managedObjectContext
+      detailViewController.journalEntry = childEntry
+      detailViewController.context = childContext
       detailViewController.delegate = self
 
     } else if segue.identifier == "SegueListToDetailAdd" {
