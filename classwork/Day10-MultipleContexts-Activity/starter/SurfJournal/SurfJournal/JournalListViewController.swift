@@ -69,9 +69,9 @@ class JournalListViewController: UITableViewController {
       let childEntry = childContext.object(with: surfJournalEntry.objectID) as? JournalEntry //must used this to access childContext's journeyEntry not the main's journalEntry
       // 3 set allRequired variables and use childEntry and childContext instead of the original surfJournalEntry and surfJournalEntry.managedObjectContext
       detailViewController.journalEntry = childEntry
-      detailViewController.context = childContext
+      detailViewController.context = childContext //since childEntry has weak reference to the context, ARC will remove context from the memory
       detailViewController.delegate = self
-
+      
     } else if segue.identifier == "SegueListToDetailAdd" {
 
       guard let navigationController = segue.destination as? UINavigationController,
