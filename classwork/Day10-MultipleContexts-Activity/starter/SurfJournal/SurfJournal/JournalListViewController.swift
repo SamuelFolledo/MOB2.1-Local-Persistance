@@ -80,9 +80,13 @@ class JournalListViewController: UITableViewController {
       }
 
       let newJournalEntry = JournalEntry(context: coreDataStack.mainContext)
-
-      detailViewController.journalEntry = newJournalEntry
-      detailViewController.context = newJournalEntry.managedObjectContext
+      
+      let childContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+      childContext.parent = coreDataStack.mainContext
+      let childEntry = childContext.object(with: newJournalEntry.objectID) as? JournalEntry
+      
+      detailViewController.journalEntry = childEntry
+      detailViewController.context = childContext
       detailViewController.delegate = self
     }
   }
