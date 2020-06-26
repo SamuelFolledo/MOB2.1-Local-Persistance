@@ -308,23 +308,25 @@ extension JournalListViewController: JournalEntryDelegate {
   
   func didFinish(viewController: JournalEntryViewController, didSave: Bool) {
 
+    //1 check if user clicked save and there is changes
     guard didSave,
       let context = viewController.context,
       context.hasChanges else {
         dismiss(animated: true)
         return
     }
-
+    /*//2 save the JournalEntryViewController context inside of a perform(_:) closure. The code sets this context to the main context; in this case it’s a bit redundant since there’s only one context, but this doesn’t change the behavior.
+    Once you add a child context to the workflow later on, the JournalEntryViewController context will be different from the main context, making this code necessary.
+ */
     context.perform {
       do {
         try context.save()
       } catch let error as NSError {
         fatalError("Error: \(error.localizedDescription)")
       }
-
+      //3 save the main context via saveContext, defined in CoreDataStack.swift, persisting any edits to disk.
       self.coreDataStack.saveContext()
     }
-
     dismiss(animated: true)
   }
 }
