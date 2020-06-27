@@ -17,18 +17,18 @@ class BookStore {
     var realm: Realm?
 
     public func saveBook(_ book: Book){
-        //TODO: save the book
+        try! realm!.write({
+            realm!.add(book)
+        })
     }
     
     public func findBooksByTitle(_ title: String) -> Results<Book>{
-        //TODO: create the predicate that matches titles
-        let predicate = NSPredicate()
+        let predicate = NSPredicate(format: "title = %@", title)
         return realm!.objects(Book.self).filter(predicate)
     }
     
-    public func createBook(_ title: String, author: String, year: Int ) -> Book{
-        let newBook = Book()
-        //TODO: set the properties
+    public func createBook(_ title: String, author: String, year: Int ) -> Book {
+        let newBook = Book(value: ["title": title, "author": author, "year": year])
         return newBook
     }
     
@@ -51,7 +51,8 @@ class BookStore {
     }
     
     public func deleteBook(_ book: Book) throws {
-        //TODO: delete the book
-      
+        try! realm!.write {
+            realm!.delete(realm!.objects(Book.self).filter("title=%@", book.title))
+        }
     }
 }

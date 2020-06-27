@@ -18,18 +18,12 @@ class ViewController: UIViewController {
         let realm = try! Realm()
         store.realm = realm
         
-        //TODO: Create a book
-        //A Game of Thrones (A Song of Ice and Fire #1)
-        //George R. R. Martin"
-        //1997
-        
-        //TODO: Save the book
-        
-        
-        //TODO: Find the book by title, print the result.
-        
+        let book = Book(value: ["title": "A Game of Thrones (A Song of Ice and Fire #1)", "George R. R. Martin": "", "year": 1997])
+        let book2 = Book(value: ["title": "Cat in the Hat", "Dr. Seuss": "", "year": 1957])
+        let bookStore = BookStore()
+        bookStore.realm = realm
+        try? bookStore.deleteBook(book)
+        try? bookStore.deleteBook(book2)
+        print("Final", realm.objects(Book.self))
     }
-
-
 }
-
