@@ -78,14 +78,12 @@ class JournalListViewController: UITableViewController {
         let detailViewController = navigationController.topViewController as? JournalEntryViewController else {
           fatalError("Application storyboard mis-configuration")
       }
-
-      let newJournalEntry = JournalEntry(context: coreDataStack.mainContext)
       
       let childContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
       childContext.parent = coreDataStack.mainContext
-      let childEntry = childContext.object(with: newJournalEntry.objectID) as? JournalEntry
+      let newJournalEntry = JournalEntry(context: childContext)
       
-      detailViewController.journalEntry = childEntry
+      detailViewController.journalEntry = newJournalEntry
       detailViewController.context = childContext
       detailViewController.delegate = self
     }
@@ -211,19 +209,18 @@ private extension JournalListViewController {
 private extension JournalListViewController {
 
   func journalListFetchedResultsController() -> NSFetchedResultsController<JournalEntry> {
-    let fetchedResultController = NSFetchedResultsController(fetchRequest: surfJournalFetchRequest(),
+    let fetchedResultsController = NSFetchedResultsController(fetchRequest: surfJournalFetchRequest(),
                                                              managedObjectContext: coreDataStack.mainContext,
                                                              sectionNameKeyPath: nil,
                                                              cacheName: nil)
-    fetchedResultController.delegate = self
+    fetchedResultsController.delegate = self
 
     do {
-      try fetchedResultController.performFetch()
+      try fetchedResultsController.performFetch()
     } catch let error as NSError {
       fatalError("Error: \(error.localizedDescription)")
     }
-
-    return fetchedResultController
+    return fetchedResultsController
   }
 
   func surfJournalFetchRequest() -> NSFetchRequest<JournalEntry> {
