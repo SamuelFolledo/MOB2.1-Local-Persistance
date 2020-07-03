@@ -7,14 +7,25 @@
 //
 
 import UIKit
+import CloudKit
 
 class ViewController: UIViewController {
+    
+    let record = CKRecord(recordType: "Post")
 
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var addButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        record[.title] = "Mondale is Pinoy"
+        record[.url] = ""
+        record[.categories] = "Pinoy"
+        record[.date] = Date()
     }
-
-
+    @IBAction func addButtonTapped(_ sender: Any) {
+        
+    }
+    
 }
 
