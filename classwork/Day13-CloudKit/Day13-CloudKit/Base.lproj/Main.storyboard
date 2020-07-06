@@ -42,13 +42,11 @@
                     <navigationItem key="navigationItem" id="GCS-Ei-Y1K">
                         <barButtonItem key="rightBarButtonItem" title="Add" id="EDr-MX-BRF">
                             <connections>
-                                <action selector="addButtonTapped:" destination="BYZ-38-t0r" id="mT1-fe-aLl"/>
-                                <segue destination="auH-jC-dbN" kind="show" id="Dwa-gy-S8P"/>
+                                <segue destination="auH-jC-dbN" kind="showDetail" id="1Q8-fz-0XD"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="addButton" destination="EDr-MX-BRF" id="Ufy-Hl-y2b"/>
                         <outlet property="tableView" destination="LUN-eq-zny" id="J7L-Vl-0m0"/>
                     </connections>
                 </viewController>
@@ -61,11 +59,11 @@
             <objects>
                 <viewController id="auH-jC-dbN" customClass="AddPostController" customModule="Day13_CloudKit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CNJ-QF-Xk0">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="94M-Ip-TTL">
-                                <rect key="frame" x="62.5" y="237.5" width="250" height="192"/>
+                                <rect key="frame" x="62.5" y="227.5" width="250" height="192"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Post Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ono-IZ-WPT">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="34"/>
@@ -84,7 +82,7 @@
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c5E-0n-jc1">
                                         <rect key="frame" x="0.0" y="162" width="250" height="30"/>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" title="Save"/>
                                         <connections>
                                             <action selector="saveButtonTapped:" destination="auH-jC-dbN" eventType="touchUpInside" id="iNH-Jv-7c7"/>
                                         </connections>
@@ -108,9 +106,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="emD-Ja-s1Y"/>
                     <connections>
-                        <outlet property="categoryTextField" destination="TDb-cb-60r" id="baz-eU-Mnh"/>
+                        <outlet property="orderTextField" destination="HQ9-JR-xPm" id="6lT-C2-2g2"/>
                         <outlet property="titleTextField" destination="ono-IZ-WPT" id="Ai7-bb-0O8"/>
-                        <outlet property="urlTextFIeld" destination="HQ9-JR-xPm" id="xZu-l1-uyX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ij4-eI-Xbq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
