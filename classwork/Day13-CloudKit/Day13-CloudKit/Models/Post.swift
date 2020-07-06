@@ -8,30 +8,38 @@
 
 import Foundation
 
-struct Post {
-    var title: String
-    var url: URL
-    var date: Date
-    var categories: String
-    
-    init(title: String, url: URL, categories: String) {
-        self.title = title
-        self.url = url
-        self.date = Date()
-        self.categories = categories
-    }
-    
-    enum PostKey: String {
-        case title
-        case url
-        case date
-        case categories
-    }
-}
-
-struct Category {
-    enum CategoryKey: String {
-        case title
-        case order
-    }
-}
+//struct Post {
+//    var title: String
+//    var url: URL
+//    var date: Date
+//    var categories: String
+//    
+//    init(title: String, url: URL, categories: String) {
+//        self.title = title
+//        self.url = url
+//        self.date = Date()
+//        self.categories = categories
+//    }
+//    
+//    enum PostKey: String {
+//        case title
+//        case url
+//        case date
+//        case categories
+//    }
+//}
+//
+//struct Category {
+//    var title: String
+//    var order: Int
+//    
+//    init(title: String, order: Int) {
+//        self.title = title
+//        self.order = order
+//    }
+//    
+//    enum CategoryKey: String {
+//        case title
+//        case order
+//    }
+//}
