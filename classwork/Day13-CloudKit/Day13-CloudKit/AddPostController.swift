@@ -36,7 +36,8 @@ class AddPostController: UIViewController {
           if let error = error {
               fatalError(error.localizedDescription)
           } else if let records = savedRecords {
-              print(records)
+            print("RECORDS = ", records)
+            self.dismiss(animated: true, completion: nil)
           } else {
             fatalError()
           }
