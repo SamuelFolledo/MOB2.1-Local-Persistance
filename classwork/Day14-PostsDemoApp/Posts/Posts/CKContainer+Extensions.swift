@@ -11,6 +11,6 @@ import CloudKit
 extension CKContainer {
     static var shared: CKContainer {
         #warning("step 0:- change this to your container name as per the dashboard")
-        return CKContainer(identifier: "iCloud.com.")
+        return CKContainer(identifier: "iCloud.com.SamuelFolledo.PostsAdmin")
     }
 }
